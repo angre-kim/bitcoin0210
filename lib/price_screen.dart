@@ -14,7 +14,11 @@ class _PriceScreenState extends State<PriceScreen> {
 
   void getDropdownItems(){
     for (int i = 0; i < currenciesList.length; i++){
-      print(currenciesList[i]);
+      String currency = currenciesList[i];
+      var newItem = DropdownMenuItem(
+          child: Text(currency),
+          value: currency,
+      );
     }
   }
 
