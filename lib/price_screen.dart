@@ -12,16 +12,6 @@ class _PriceScreenState extends State<PriceScreen> {
 
   List<DropdownMenuItem> getDropdownItems() {
     List<DropdownMenuItem<String>> dropdownItems = [];
-//    for (int i = 0; i < currenciesList.length; i++) {
-//      String currency = currenciesList[i];
-//      var newItem = DropdownMenuItem(
-//        child: Text(currency),
-//        value: currency,
-//      );
-//
-//      dropdownItems.add(newItem);
-//    }
-
     for (String currency in currenciesList) {
       var newItem = DropdownMenuItem(
         child: Text(currency),
@@ -70,17 +60,20 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: DropdownButton<String>(
-                value: selectedCurrency,
-                items: getDropdownItems(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedCurrency = value;
-                  });
-                }),
+            child:
           ),
         ],
       ),
     );
   }
 }
+
+
+DropdownButton<String>(
+value: selectedCurrency,
+items: getDropdownItems(),
+onChanged: (value) {
+setState(() {
+selectedCurrency = value;
+});
+}),
