@@ -1,7 +1,4 @@
-import 'package:bitcoin0206/coin_data.dart';
 import 'package:flutter/material.dart';
-import 'coin_data.dart';
-import 'package:flutter/cupertino.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -9,25 +6,11 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+
   String selectedCurrency = 'USD';
-
-  List<DropdownMenuItem> getDropdownItems() {
-    List<DropdownMenuItem<String>> dropdownItems = [];
-    for (String currency in currenciesList) {
-      var newItem = DropdownMenuItem(
-        child: Text(currency),
-        value: currency,
-      );
-      dropdownItems.add(newItem);
-    }
-
-    return dropdownItems;
-  }
 
   @override
   Widget build(BuildContext context) {
-    getDropdownItems();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('비트코인 ticker'),
@@ -61,28 +44,31 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: CupertinoPicker(
-                backgroundColor: Colors.lightBlue,
-                itemExtent: 32.0, onSelectedItemChanged: (selectedIndex){
-              print(selectedIndex);
-            }, children: [
-              Text('usd'),
-              Text('krw'),
-              Text('jpy'),
+            child: DropdownButton<String>(
+                value: selectedCurrency,
+                items: [
+                  DropdownMenuItem(
+                    child: Text('USD'),
+                    value: 'USD',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('FFF'),
+                    value: 'FFF',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('DDD'),
+                    value: 'DDD',
+                  ),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    selectedCurrency = value;
+                  });
 
-            ])
+                }),
           ),
         ],
       ),
     );
   }
 }
-
-//DropdownButton<String>(
-//value: selectedCurrency,
-//items: getDropdownItems(),
-//onChanged: (value) {
-//setState(() {
-//selectedCurrency = value;
-//});
-//}),
